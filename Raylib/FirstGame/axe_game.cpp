@@ -6,7 +6,10 @@ int main()
   int height = 200;
   InitWindow(width, height, "Winter");
 
-  while (true)
+  while (!WindowShouldClose())
   {
+    BeginDrawing();
+    ClearBackground(RED);
+    EndDrawing();
   }
 }
