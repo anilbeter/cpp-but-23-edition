@@ -2,5 +2,7 @@
 
 int main()
 {
-  InitWindow(350, 200, "Winter");
+  int width = 350;
+  int height = 200;
+  InitWindow(width, height, "Winter");
 }
