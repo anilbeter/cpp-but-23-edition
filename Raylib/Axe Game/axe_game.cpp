@@ -3,5 +3,7 @@
 
 int main()
 {
-  InitWindow(350, 200, "Another Life");
+  int width = 350;
+  int height = 200;
+  InitWindow(width, height, "Another Life");
 }
