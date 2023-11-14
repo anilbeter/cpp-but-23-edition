@@ -7,7 +7,7 @@ int main()
   int height = 200;
   InitWindow(width, height, "Another Life");
 
-  while (true)
+  while (!WindowShouldClose())
   {
     BeginDrawing();
     ClearBackground(RED);
