@@ -15,6 +15,18 @@ int main()
   int axe_length = 50;
   int direction = 10;
 
+  // circle edges
+  int l_circle_x = circle_x - circle_radius;
+  int r_circle_x = circle_x + circle_radius;
+  int u_circle_y = circle_y - circle_radius;
+  int b_circle_y = circle_y + circle_radius;
+
+  // axe edges
+  int l_axe_x = axe_x;
+  int r_axe_x = axe_x + axe_length;
+  int u_axe_y = axe_y;
+  int b_axe_y = axe_y + axe_length;
+
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
