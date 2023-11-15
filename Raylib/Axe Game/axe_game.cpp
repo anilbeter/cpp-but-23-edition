@@ -27,33 +27,53 @@ int main()
   int u_axe_y = axe_y;
   int b_axe_y = axe_y + axe_length;
 
+  bool collision_with_axe = (l_circle_x <= r_axe_x) && (u_circle_y <= b_axe_y) && (r_circle_x >= l_axe_x) && (b_circle_y >= u_axe_y);
+
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
     BeginDrawing();
     ClearBackground(WHITE);
 
-    // Game logic begins
-    DrawCircle(circle_x, circle_y, circle_radius, BLUE);
-    DrawRectangle(axe_x - 25, axe_y, axe_length, axe_length, RED);
-
-    axe_y += direction;
-    if (axe_y > height - 50 || axe_y < 0)
+    if (collision_with_axe)
     {
-      direction = -direction;
+      DrawText("Game Over", 400, 200, 20, RED);
     }
 
-    if (IsKeyDown(KEY_D) && circle_x < 775)
+    else
     {
-      circle_x += 10;
-    }
+      // update edges
+      l_circle_x = circle_x - circle_radius;
+      r_circle_x = circle_x + circle_radius;
+      u_circle_y = circle_y - circle_radius;
+      b_circle_y = circle_y + circle_radius;
+      l_axe_x = axe_x;
+      r_axe_x = axe_x + axe_length;
+      u_axe_y = axe_y;
+      b_axe_y = axe_y + axe_length;
 
-    if (IsKeyDown(KEY_A) && circle_x > 25)
-    {
-      circle_x -= 10;
-    }
+      // update collision
+      collision_with_axe = (l_circle_x <= r_axe_x) && (u_circle_y <= b_axe_y) && (r_circle_x >= l_axe_x) && (b_circle_y >= u_axe_y);
 
-    // Game logic ends
+      DrawCircle(circle_x, circle_y, circle_radius, BLUE);
+      DrawRectangle(axe_x - 25, axe_y, axe_length, axe_length, RED);
+
+      axe_y += direction;
+      if (axe_y > height - 50 || axe_y < 0)
+      {
+        direction = -direction;
+      }
+
+      if (IsKeyDown(KEY_D) && circle_x < 775)
+      {
+        circle_x += 10;
+      }
+
+      if (IsKeyDown(KEY_A) && circle_x > 25)
+      {
+        circle_x -= 10;
+      }
+    }
     EndDrawing();
   }
 }
