@@ -21,7 +21,7 @@ int main()
 
     // Game logic begins
     DrawCircle(circle_x, circle_y, 25, BLUE);
-    DrawRectangle(axe_x, axe_y, 50, 50, RED);
+    DrawRectangle(axe_x - 25, axe_y, 50, 50, RED);
 
     axe_y += direction;
     if (axe_y > height - 50 || axe_y < 0)
