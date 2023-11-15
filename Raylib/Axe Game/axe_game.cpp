@@ -9,8 +9,10 @@ int main()
 
   int circle_x = 200;
   int circle_y = 200;
+  int circle_radius = 25;
   int axe_x = 400;
   int axe_y = 0;
+  int axe_length = 50;
   int direction = 10;
 
   SetTargetFPS(60);
@@ -20,8 +22,8 @@ int main()
     ClearBackground(WHITE);
 
     // Game logic begins
-    DrawCircle(circle_x, circle_y, 25, BLUE);
-    DrawRectangle(axe_x - 25, axe_y, 50, 50, RED);
+    DrawCircle(circle_x, circle_y, circle_radius, BLUE);
+    DrawRectangle(axe_x - 25, axe_y, axe_length, axe_length, RED);
 
     axe_y += direction;
     if (axe_y > height - 50 || axe_y < 0)
