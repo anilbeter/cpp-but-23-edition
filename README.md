@@ -2,4 +2,5 @@
 
 ---
 
-<img src="Roadmap.png">
+<img src="Roadmap.png"> <br>
+<img src="Progress1.png">
