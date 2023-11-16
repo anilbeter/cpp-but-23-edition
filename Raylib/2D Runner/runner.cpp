@@ -13,24 +13,29 @@ int main()
 
   int posY = window_height - height;
   int velocity = 0;
+  bool isInAir;
+  const int jumpVelocity = -22;
 
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
     BeginDrawing();
     ClearBackground(WHITE);
+
     if (posY > window_height - height)
     {
       velocity = 0;
+      isInAir = false;
     }
     else
     {
+      isInAir = true;
       velocity += gravity;
     }
 
-    if (IsKeyPressed(KEY_SPACE))
+    if (IsKeyPressed(KEY_SPACE) && !isInAir)
     {
-      velocity = -10;
+      velocity += jumpVelocity;
     }
     posY += velocity;
 
