@@ -16,6 +16,11 @@ int main()
   bool isInAir;
   const int jumpVelocity = -22;
 
+  // Character textures
+  Texture2D ilayda = LoadTexture("textures/scarfy.png");
+  Rectangle ilaydaRec;
+  Vector2 ilaydPos;
+
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
