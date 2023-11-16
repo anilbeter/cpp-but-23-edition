@@ -8,18 +8,20 @@ int main()
 
   const int gravity = 1;
 
-  const int width = 50;
-  const int height = 80;
-
-  int posY = window_height - height;
-  int velocity = 0;
-  bool isInAir;
-  const int jumpVelocity = -22;
-
   // Character textures
   Texture2D ilayda = LoadTexture("textures/scarfy.png");
   Rectangle ilaydaRec;
-  Vector2 ilaydPos;
+  ilaydaRec.width = ilayda.width / 6;
+  ilaydaRec.height = ilayda.height;
+  ilaydaRec.x = 0;
+  ilaydaRec.y = 0;
+  Vector2 ilaydaPos;
+  ilaydaPos.x = window_width / 2 - (ilaydaRec.width / 2);
+  ilaydaPos.y = window_height - ilaydaRec.height;
+
+  int velocity = 0;
+  bool isInAir;
+  const int jumpVelocity = -22;
 
   SetTargetFPS(60);
   while (!WindowShouldClose())
@@ -27,7 +29,7 @@ int main()
     BeginDrawing();
     ClearBackground(WHITE);
 
-    if (posY > window_height - height)
+    if (ilaydaPos.y > window_height - ilaydaRec.height)
     {
       velocity = 0;
       isInAir = false;
@@ -42,11 +44,12 @@ int main()
     {
       velocity += jumpVelocity;
     }
-    posY += velocity;
+    ilaydaPos.y += velocity;
 
-    DrawRectangle(window_width / 2, posY, width, height, BLUE);
+    DrawTextureRec(ilayda, ilaydaRec, ilaydaPos, WHITE);
 
     EndDrawing();
   }
+  UnloadTexture(ilayda);
   CloseWindow();
 }
