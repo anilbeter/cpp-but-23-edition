@@ -6,6 +6,8 @@ int main()
   const int window_height = 380;
   InitWindow(window_width, window_height, "2D Runner");
 
+  const int gravity = 1;
+
   const int width = 50;
   const int height = 80;
 
@@ -17,6 +19,14 @@ int main()
   {
     BeginDrawing();
     ClearBackground(WHITE);
+    if (posY > window_height - height)
+    {
+      velocity = 0;
+    }
+    else
+    {
+      velocity += gravity;
+    }
 
     if (IsKeyPressed(KEY_SPACE))
     {
