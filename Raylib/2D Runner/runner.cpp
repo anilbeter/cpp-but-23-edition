@@ -26,7 +26,7 @@ int main()
   // x, y
   Vector2 nebulaPos{windowWidth, windowHeight - nebulaRec.height};
 
-  int nebulaVel = -600;
+  int nebulaVel = -200;
 
   int velocity = 0;
   bool isInAir;
@@ -35,6 +35,10 @@ int main()
   int frame;
   const float updateTime = 1.0 / 12.0;
   float runningTime;
+
+  int nebFrame;
+  const float nebUpdateTime = 1.0 / 12.0;
+  float nebRunningTime;
 
   SetTargetFPS(60);
   while (!WindowShouldClose())
@@ -65,21 +69,33 @@ int main()
     // Update Nebula position
     nebulaPos.x += nebulaVel * dT;
 
+    // Ilayda animation
     if (!isInAir)
     {
-      // Update Running Time
       runningTime += dT;
       if (runningTime >= updateTime)
       {
         runningTime = 0.0;
 
-        // Update Animation Frame
         ilaydaRec.x = frame * ilaydaRec.width;
         frame++;
         if (frame > 5)
         {
           frame = 0;
         }
+      }
+    }
+
+    // Nebula animation
+    nebRunningTime += dT;
+    if (nebRunningTime >= nebUpdateTime)
+    {
+      runningTime = 0.0;
+      nebulaRec.x = nebFrame * nebulaRec.width;
+      nebFrame++;
+      if (nebFrame > 7)
+      {
+        nebFrame = 0;
       }
     }
 
