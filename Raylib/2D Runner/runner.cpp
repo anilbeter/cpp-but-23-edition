@@ -2,9 +2,9 @@
 
 int main()
 {
-  const int window_width = 512;
-  const int window_height = 380;
-  InitWindow(window_width, window_height, "2D Runner");
+  const int windowWidth = 512;
+  const int windowHeight = 380;
+  InitWindow(windowWidth, windowHeight, "2D Runner");
 
   const int gravity = 1;
 
@@ -16,8 +16,8 @@ int main()
   ilaydaRec.x = 0;
   ilaydaRec.y = 0;
   Vector2 ilaydaPos;
-  ilaydaPos.x = window_width / 2 - (ilaydaRec.width / 2);
-  ilaydaPos.y = window_height - ilaydaRec.height;
+  ilaydaPos.x = windowWidth / 2 - (ilaydaRec.width / 2);
+  ilaydaPos.y = windowHeight - ilaydaRec.height;
 
   int velocity = 0;
   bool isInAir;
@@ -29,7 +29,7 @@ int main()
     BeginDrawing();
     ClearBackground(WHITE);
 
-    if (ilaydaPos.y > window_height - ilaydaRec.height)
+    if (ilaydaPos.y > windowHeight - ilaydaRec.height)
     {
       velocity = 0;
       isInAir = false;
