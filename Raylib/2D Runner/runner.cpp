@@ -90,7 +90,7 @@ int main()
     nebRunningTime += dT;
     if (nebRunningTime >= nebUpdateTime)
     {
-      runningTime = 0.0;
+      nebRunningTime = 0.0;
       nebulaRec.x = nebFrame * nebulaRec.width;
       nebFrame++;
       if (nebFrame > 7)
