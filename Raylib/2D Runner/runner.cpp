@@ -26,6 +26,9 @@ int main()
   // x, y
   Vector2 nebulaPos{windowWidth, windowHeight - nebulaRec.height};
 
+  Rectangle neb2Rec{0, 0, (float)nebula.width / 8, (float)nebula.height / 8};
+  Vector2 neb2Pos{windowWidth + 500, windowHeight - nebulaRec.height};
+
   int nebulaVel = -200;
 
   int velocity = 0;
@@ -39,6 +42,10 @@ int main()
   int nebFrame;
   const float nebUpdateTime = 1.0 / 12.0;
   float nebRunningTime;
+
+  int neb2Frame;
+  const float neb2UpdateTime = 1.0 / 16.0;
+  float neb2RunningTime;
 
   SetTargetFPS(60);
   while (!WindowShouldClose())
@@ -68,6 +75,9 @@ int main()
 
     // Update Nebula position
     nebulaPos.x += nebulaVel * dT;
+
+    // Update second nebula pos
+    neb2Pos.x += nebulaVel * dT;
 
     // Ilayda animation
     if (!isInAir)
@@ -99,8 +109,21 @@ int main()
       }
     }
 
+    neb2RunningTime += dT;
+    if (neb2RunningTime >= neb2UpdateTime)
+    {
+      neb2RunningTime = 0.0;
+      neb2Rec.x = neb2Frame * neb2Rec.width;
+      neb2Frame++;
+      if (neb2Frame > 7)
+      {
+        neb2Frame = 0;
+      }
+    }
+
     DrawTextureRec(ilayda, ilaydaRec, ilaydaPos, WHITE);
     DrawTextureRec(nebula, nebulaRec, nebulaPos, WHITE);
+    DrawTextureRec(nebula, neb2Rec, neb2Pos, RED);
 
     EndDrawing();
   }
