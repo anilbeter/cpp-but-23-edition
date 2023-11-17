@@ -6,7 +6,7 @@ int main()
   const int windowHeight = 380;
   InitWindow(windowWidth, windowHeight, "2D Runner");
 
-  const int gravity = 1;
+  const int gravity = 1'000; //(1000)
 
   // Character textures
   Texture2D ilayda = LoadTexture("textures/scarfy.png");
@@ -21,13 +21,14 @@ int main()
 
   int velocity = 0;
   bool isInAir;
-  const int jumpVelocity = -22;
+  const int jumpVelocity = -600;
 
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
     BeginDrawing();
     ClearBackground(WHITE);
+    const float dT = GetFrameTime();
 
     if (ilaydaPos.y > windowHeight - ilaydaRec.height)
     {
@@ -37,14 +38,14 @@ int main()
     else
     {
       isInAir = true;
-      velocity += gravity;
+      velocity += gravity * dT;
     }
 
     if (IsKeyPressed(KEY_SPACE) && !isInAir)
     {
       velocity += jumpVelocity;
     }
-    ilaydaPos.y += velocity;
+    ilaydaPos.y += velocity * dT;
 
     DrawTextureRec(ilayda, ilaydaRec, ilaydaPos, WHITE);
 
