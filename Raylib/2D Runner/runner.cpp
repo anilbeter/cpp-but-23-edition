@@ -50,6 +50,8 @@ int main()
       1.0 / 12.0,
       0};
 
+  AnimData neb2Data{{0, 0, (float)nebula.width / 8, (float)nebula.height / 8}, {windowWidth + 500, windowHeight - nebula.height / 8}, 0, 1.0 / 16.0, 0};
+
   // x, y, width, height
   Rectangle nebulaRec = {0, 0, (float)nebula.width / 8, (float)nebula.height / 8};
   // x, y
