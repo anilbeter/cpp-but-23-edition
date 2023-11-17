@@ -22,7 +22,7 @@ int main()
   // Nebula variables
   Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
   // x, y, width, height
-  Rectangle nebulaRec = {0, 0, nebula.width / 8, nebula.height / 8};
+  Rectangle nebulaRec = {0, 0, (float)nebula.width / 8, (float)nebula.height / 8};
   // x, y
   Vector2 nebulaPos{windowWidth, windowHeight - nebulaRec.height};
 
