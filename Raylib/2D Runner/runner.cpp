@@ -23,6 +23,10 @@ int main()
   bool isInAir;
   const int jumpVelocity = -600;
 
+  int frame;
+  const float updateTime = 1.0 / 12.0;
+  float runningTime;
+
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
@@ -46,6 +50,21 @@ int main()
       velocity += jumpVelocity;
     }
     ilaydaPos.y += velocity * dT;
+
+    // Update Running Time
+    runningTime += dT;
+    if (runningTime >= updateTime)
+    {
+      runningTime = 0.0;
+
+      // Update Animation Frame
+      ilaydaRec.x = frame * ilaydaRec.width;
+      frame++;
+      if (frame > 5)
+      {
+        frame = 0;
+      }
+    }
 
     DrawTextureRec(ilayda, ilaydaRec, ilaydaPos, WHITE);
 
