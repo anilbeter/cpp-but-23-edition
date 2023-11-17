@@ -45,13 +45,13 @@ int main()
   // AnimData for nebula
   AnimData nebData{
       {0, 0, (float)nebula.width / 8, (float)nebula.height / 8},
-      {windowWidth, windowHeight - nebula.height / 8},
+      {windowWidth, (float)windowHeight - nebula.height / 8},
       0,
       1.0 / 12.0,
       0};
 
   // AnimData for 2nd nebula
-  AnimData neb2Data{{0, 0, (float)nebula.width / 8, (float)nebula.height / 8}, {windowWidth + 500, windowHeight - nebula.height / 8}, 0, 1.0 / 16.0, 0};
+  AnimData neb2Data{{0, 0, (float)nebula.width / 8, (float)nebula.height / 8}, {windowWidth + 500, (float)windowHeight - nebula.height / 8}, 0, 1.0 / 16.0, 0};
 
   int nebulaVel = -200;
 
