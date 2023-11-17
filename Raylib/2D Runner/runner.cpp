@@ -8,7 +8,7 @@ int main()
 
   const int gravity = 1'000; //(1000)
 
-  // Character textures
+  // Ilayda variables
   Texture2D ilayda = LoadTexture("textures/scarfy.png");
   Rectangle ilaydaRec;
   ilaydaRec.width = ilayda.width / 6;
@@ -18,6 +18,15 @@ int main()
   Vector2 ilaydaPos;
   ilaydaPos.x = windowWidth / 2 - (ilaydaRec.width / 2);
   ilaydaPos.y = windowHeight - ilaydaRec.height;
+
+  // Nebula variables
+  Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
+  // x, y, width, height
+  Rectangle nebulaRec = {0, 0, nebula.width / 8, nebula.height / 8};
+  // x, y
+  Vector2 nebulaPos{windowWidth, windowHeight - nebulaRec.height};
+
+  int nebulaVel = -600;
 
   int velocity = 0;
   bool isInAir;
@@ -49,7 +58,12 @@ int main()
     {
       velocity += jumpVelocity;
     }
+
+    // Update Ilayda position
     ilaydaPos.y += velocity * dT;
+
+    // Update Nebula position
+    nebulaPos.x += nebulaVel * dT;
 
     // Update Running Time
     runningTime += dT;
@@ -67,9 +81,11 @@ int main()
     }
 
     DrawTextureRec(ilayda, ilaydaRec, ilaydaPos, WHITE);
+    DrawTextureRec(nebula, nebulaRec, nebulaPos, WHITE);
 
     EndDrawing();
   }
   UnloadTexture(ilayda);
+  UnloadTexture(nebula);
   CloseWindow();
 }
