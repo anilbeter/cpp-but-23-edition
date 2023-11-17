@@ -41,6 +41,15 @@ int main()
 
   // Nebula variables
   Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
+
+  // AnimData for nebula
+  AnimData nebData{
+      {0, 0, (float)nebula.width / 8, (float)nebula.height / 8},
+      {windowWidth, windowHeight - nebula.height / 8},
+      0,
+      1.0 / 12.0,
+      0};
+
   // x, y, width, height
   Rectangle nebulaRec = {0, 0, (float)nebula.width / 8, (float)nebula.height / 8};
   // x, y
