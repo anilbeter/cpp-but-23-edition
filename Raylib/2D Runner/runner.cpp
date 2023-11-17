@@ -1,5 +1,14 @@
 #include "raylib.h"
 
+struct AnimData
+{
+  Rectangle rec;
+  Vector2 pos;
+  int frame;
+  float updateTime;
+  float runningTime;
+};
+
 int main()
 {
   const int windowWidth = 512;
@@ -10,6 +19,17 @@ int main()
 
   // Ilayda variables
   Texture2D ilayda = LoadTexture("textures/scarfy.png");
+  AnimData ilaydaData;
+  ilaydaData.rec.width = ilayda.width / 6;
+  ilaydaData.rec.height = ilayda.height;
+  ilaydaData.rec.x = 0;
+  ilaydaData.rec.y = 0;
+  ilaydaData.pos.x = windowWidth / 2 - (ilaydaData.rec.width / 2);
+  ilaydaData.pos.y = windowHeight - ilaydaData.rec.height;
+  ilaydaData.frame = 0;
+  ilaydaData.updateTime = 1.0 / 12.0;
+  ilaydaData.runningTime = 0.0;
+
   Rectangle ilaydaRec;
   ilaydaRec.width = ilayda.width / 6;
   ilaydaRec.height = ilayda.height;
