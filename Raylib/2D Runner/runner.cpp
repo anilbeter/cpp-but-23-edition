@@ -65,18 +65,21 @@ int main()
     // Update Nebula position
     nebulaPos.x += nebulaVel * dT;
 
-    // Update Running Time
-    runningTime += dT;
-    if (runningTime >= updateTime)
+    if (!isInAir)
     {
-      runningTime = 0.0;
-
-      // Update Animation Frame
-      ilaydaRec.x = frame * ilaydaRec.width;
-      frame++;
-      if (frame > 5)
+      // Update Running Time
+      runningTime += dT;
+      if (runningTime >= updateTime)
       {
-        frame = 0;
+        runningTime = 0.0;
+
+        // Update Animation Frame
+        ilaydaRec.x = frame * ilaydaRec.width;
+        frame++;
+        if (frame > 5)
+        {
+          frame = 0;
+        }
       }
     }
 
