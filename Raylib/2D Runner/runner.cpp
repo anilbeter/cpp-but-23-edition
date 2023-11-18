@@ -33,9 +33,10 @@ int main()
   // Nebula variables
   Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
 
-  AnimData nebulas[3]{};
+  const int sizeOfNebula = 6;
+  AnimData nebulas[sizeOfNebula]{};
 
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < sizeOfNebula; i++)
   {
     nebulas[i].rec.x = 0.0;
     nebulas[i].rec.y = 0.0;
@@ -47,9 +48,11 @@ int main()
     nebulas[i].updateTime = 1.0 / 16.0;
   }
 
-  nebulas[0].pos.x = (float)windowDimensions[0];
-  nebulas[1].pos.x = (float)windowDimensions[0] + 300;
-  nebulas[2].pos.x = (float)windowDimensions[0] + 600;
+  int constantRange = 300;
+  for (int i = 0; i < sizeOfNebula; i++)
+  {
+    nebulas[i].pos.x = windowDimensions[0] + constantRange * i;
+  }
 
   const int gravity = 1'000; //(1000)
   int velocity = 0;
@@ -83,11 +86,10 @@ int main()
     // Update Ilayda position
     ilaydaData.pos.y += velocity * dT;
 
-    // Update Nebula position
-    nebulas[0].pos.x += nebulaVel * dT;
-
-    // Update second nebula pos
-    nebulas[1].pos.x += nebulaVel * dT;
+    for (int i = 0; i < sizeOfNebula; i++)
+    {
+      nebulas[i].pos.x += nebulaVel * dT;
+    }
 
     // Ilayda animation
     if (!isInAir)
@@ -106,34 +108,27 @@ int main()
       }
     }
 
-    // Nebula animation
-    nebulas[0].runningTime += dT;
-    if (nebulas[0].runningTime >= nebulas[0].updateTime)
+    for (int i = 0; i < sizeOfNebula; i++)
     {
-      nebulas[0].runningTime = 0.0;
-      nebulas[0].rec.x = nebulas[0].frame * nebulas[0].rec.width;
-      nebulas[0].frame++;
-      if (nebulas[0].frame > 7)
+      nebulas[i].runningTime += dT;
+      if (nebulas[i].runningTime >= nebulas[i].updateTime)
       {
-        nebulas[0].frame = 0;
-      }
-    }
-
-    nebulas[1].runningTime += dT;
-    if (nebulas[1].runningTime >= nebulas[1].updateTime)
-    {
-      nebulas[1].runningTime = 0.0;
-      nebulas[1].rec.x = nebulas[1].frame * nebulas[1].rec.width;
-      nebulas[1].frame++;
-      if (nebulas[1].frame > 7)
-      {
-        nebulas[1].frame = 0;
+        nebulas[i].runningTime = 0.0;
+        nebulas[i].rec.x = nebulas[i].frame * nebulas[i].rec.width;
+        nebulas[i].frame++;
+        if (nebulas[i].frame > 7)
+        {
+          nebulas[i].frame = 0;
+        }
       }
     }
 
     DrawTextureRec(ilayda, ilaydaData.rec, ilaydaData.pos, WHITE);
-    DrawTextureRec(nebula, nebulas[0].rec, nebulas[0].pos, WHITE);
-    DrawTextureRec(nebula, nebulas[1].rec, nebulas[1].pos, RED);
+
+    for (int i = 0; i < sizeOfNebula; i++)
+    {
+      DrawTextureRec(nebula, nebulas[i].rec, nebulas[i].pos, WHITE);
+    }
 
     EndDrawing();
   }
