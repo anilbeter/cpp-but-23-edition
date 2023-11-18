@@ -75,6 +75,8 @@ int main()
     nebulas[i].pos.x = windowDimensions[0] + constantRange * i;
   }
 
+  float finishLine{nebulas[sizeOfNebula - 1].pos.x};
+
   const int gravity = 1'000; //(1000)
   int velocity = 0;
   const int jumpVelocity = -600;
@@ -153,6 +155,9 @@ int main()
     {
       nebulas[i].pos.x += nebulaVel * dT;
     }
+
+    // Update finish line
+    finishLine += nebulaVel * dT;
 
     // Ilayda animation
     if (!isInAir)
