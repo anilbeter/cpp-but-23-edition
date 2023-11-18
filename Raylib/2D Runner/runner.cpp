@@ -194,6 +194,11 @@ int main()
     if (collision)
     {
       // GAME OVER
+      DrawText("GAME OVER", windowDimensions[0] / 2, windowDimensions[1] / 2, 36, RED);
+    }
+    else if (ilaydaData.pos.x >= finishLine)
+    {
+      DrawText("YOU WIN!", windowDimensions[0] / 4 + 50, windowDimensions[1] / 2, 40, GREEN);
     }
     else
     {
