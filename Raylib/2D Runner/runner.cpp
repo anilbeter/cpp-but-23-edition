@@ -44,7 +44,9 @@ int main()
   // AnimData for 2nd nebula
   AnimData neb2Data{{0, 0, (float)nebula.width / 8, (float)nebula.height / 8}, {(float)windowDimensions[0] + 500, (float)windowDimensions[1] - nebula.height / 8}, 0, 1.0 / 16.0, 0};
 
-  AnimData nebulas[2]{nebData, neb2Data};
+  AnimData nebulas[2];
+  nebulas[0] = nebData;
+  nebulas[1] = neb2Data;
 
   const int gravity = 1'000; //(1000)
   int velocity = 0;
