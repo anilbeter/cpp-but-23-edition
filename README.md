@@ -3,4 +3,5 @@
 ---
 
 <img src="Progress1.png"> <br>
-<img src = "2D-runner-final.gif">
+
+<!-- <img src = "2D-runner-final.gif"> -->
