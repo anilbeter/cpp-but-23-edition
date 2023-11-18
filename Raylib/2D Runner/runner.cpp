@@ -47,9 +47,9 @@ int main()
     nebulas[i].updateTime = 1.0 / 16.0;
   }
 
-  nebulas[0].pos.y = (float)windowDimensions[0];
-  nebulas[1].pos.y = (float)windowDimensions[0] + 300;
-  nebulas[2].pos.y = (float)windowDimensions[0] + 600;
+  nebulas[0].pos.x = (float)windowDimensions[0];
+  nebulas[1].pos.x = (float)windowDimensions[0] + 300;
+  nebulas[2].pos.x = (float)windowDimensions[0] + 600;
 
   const int gravity = 1'000; //(1000)
   int velocity = 0;
