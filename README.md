@@ -2,5 +2,5 @@
 
 ---
 
-<img src="Roadmap.png"> <br>
-<img src="Progress1.png">
+<img src="Progress1.png"> <br>
+<img src = "2D-runner-final.gif">
