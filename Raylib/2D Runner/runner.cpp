@@ -81,12 +81,20 @@ int main()
   int nebulaVel = -200;
   bool isInAir;
 
+  Texture2D background = LoadTexture("textures/far-buildings.png");
+  float bgX{};
+
   SetTargetFPS(60);
   while (!WindowShouldClose())
   {
+    const float dT = GetFrameTime();
     BeginDrawing();
     ClearBackground(WHITE);
-    const float dT = GetFrameTime();
+
+    bgX -= 20 * dT;
+
+    Vector2 bgPos{bgX, 0.0};
+    DrawTextureEx(background, bgPos, 0.0, 2.0, WHITE);
 
     if (isOnGround(ilaydaData, windowDimensions[1]))
     {
@@ -134,5 +142,6 @@ int main()
   }
   UnloadTexture(ilayda);
   UnloadTexture(nebula);
+  UnloadTexture(background);
   CloseWindow();
 }
