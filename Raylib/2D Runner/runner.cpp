@@ -11,11 +11,11 @@ struct AnimData
 
 int main()
 {
-  const int windowWidth = 512;
-  const int windowHeight = 380;
-  InitWindow(windowWidth, windowHeight, "2D Runner");
+  int windowDimensions[2];
+  windowDimensions[0] = 512;
+  windowDimensions[1] = 380;
 
-  const int gravity = 1'000; //(1000)
+  InitWindow(windowDimensions[0], windowDimensions[1], "2D Runner");
 
   // Ilayda variables
   Texture2D ilayda = LoadTexture("textures/scarfy.png");
@@ -24,20 +24,11 @@ int main()
   ilaydaData.rec.height = ilayda.height;
   ilaydaData.rec.x = 0;
   ilaydaData.rec.y = 0;
-  ilaydaData.pos.x = windowWidth / 2 - (ilaydaData.rec.width / 2);
-  ilaydaData.pos.y = windowHeight - ilaydaData.rec.height;
+  ilaydaData.pos.x = windowDimensions[0] / 2 - (ilaydaData.rec.width / 2);
+  ilaydaData.pos.y = windowDimensions[1] - ilaydaData.rec.height;
   ilaydaData.frame = 0;
   ilaydaData.updateTime = 1.0 / 12.0;
   ilaydaData.runningTime = 0.0;
-
-  // Rectangle ilaydaRec;
-  // ilaydaRec.width = ilayda.width / 6;
-  // ilaydaRec.height = ilayda.height;
-  // ilaydaRec.x = 0;
-  // ilaydaRec.y = 0;
-  // Vector2 ilaydaPos;
-  // ilaydaPos.x = windowWidth / 2 - (ilaydaRec.width / 2);
-  // ilaydaPos.y = windowHeight - ilaydaRec.height;
 
   // Nebula variables
   Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
@@ -45,19 +36,19 @@ int main()
   // AnimData for nebula
   AnimData nebData{
       {0, 0, (float)nebula.width / 8, (float)nebula.height / 8},
-      {windowWidth, (float)windowHeight - nebula.height / 8},
+      {(float)windowDimensions[0], (float)windowDimensions[1] - nebula.height / 8},
       0,
       1.0 / 12.0,
       0};
 
   // AnimData for 2nd nebula
-  AnimData neb2Data{{0, 0, (float)nebula.width / 8, (float)nebula.height / 8}, {windowWidth + 500, (float)windowHeight - nebula.height / 8}, 0, 1.0 / 16.0, 0};
+  AnimData neb2Data{{0, 0, (float)nebula.width / 8, (float)nebula.height / 8}, {(float)windowDimensions[0] + 500, (float)windowDimensions[1] - nebula.height / 8}, 0, 1.0 / 16.0, 0};
 
-  int nebulaVel = -200;
-
+  const int gravity = 1'000; //(1000)
   int velocity = 0;
-  bool isInAir;
   const int jumpVelocity = -600;
+  int nebulaVel = -200;
+  bool isInAir;
 
   SetTargetFPS(60);
   while (!WindowShouldClose())
@@ -66,7 +57,7 @@ int main()
     ClearBackground(WHITE);
     const float dT = GetFrameTime();
 
-    if (ilaydaData.pos.y > windowHeight - ilaydaData.rec.height)
+    if (ilaydaData.pos.y > windowDimensions[1] - ilaydaData.rec.height)
     {
       velocity = 0;
       isInAir = false;
