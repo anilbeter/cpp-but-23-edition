@@ -10,6 +10,8 @@ int main()
   Vector2 mapPos{0.0, 0.0};
   float speed = 4.0;
 
+  Texture2D knightIdle = LoadTexture("characters/knight_idle_spritesheet.png");
+  Texture2D knightRun = LoadTexture("characters/knight_run_spritesheet.png");
   Texture2D knight = LoadTexture("characters/knight_idle_spritesheet.png");
   Vector2 knightPos{
       (float)windowDimensions[0] / 2.0f - 4.0f * (0.5f * (float)knight.width / 6.0f),
@@ -46,6 +48,11 @@ int main()
       Vector2 scaledVector = Vector2Scale(Vector2Normalize(direction), speed);
       mapPos = Vector2Subtract(mapPos, scaledVector);
       direction.x < 0.f ? rightLeft = -1.0f : rightLeft = 1.0f;
+      knight = knightRun;
+    }
+    else
+    {
+      knight = knightIdle;
     }
 
     // draw the map
