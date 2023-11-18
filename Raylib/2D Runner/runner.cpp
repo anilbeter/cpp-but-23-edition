@@ -9,6 +9,27 @@ struct AnimData
   float runningTime;
 };
 
+bool isOnGround(AnimData data, int windowHeight)
+{
+  return data.pos.y >= windowHeight - data.rec.height;
+}
+
+AnimData updateAnimData(AnimData data, float deltaTime, int maxFrame)
+{
+  data.runningTime += deltaTime;
+  if (data.runningTime >= data.updateTime)
+  {
+    data.runningTime = 0.0;
+    data.rec.x = data.frame * data.rec.width;
+    data.frame++;
+    if (data.frame > maxFrame)
+    {
+      data.frame = 0;
+    }
+  }
+  return data;
+}
+
 int main()
 {
   int windowDimensions[2];
@@ -67,7 +88,7 @@ int main()
     ClearBackground(WHITE);
     const float dT = GetFrameTime();
 
-    if (ilaydaData.pos.y > windowDimensions[1] - ilaydaData.rec.height)
+    if (isOnGround(ilaydaData, windowDimensions[1]))
     {
       velocity = 0;
       isInAir = false;
@@ -94,33 +115,12 @@ int main()
     // Ilayda animation
     if (!isInAir)
     {
-      ilaydaData.runningTime += dT;
-      if (ilaydaData.runningTime >= ilaydaData.updateTime)
-      {
-        ilaydaData.runningTime = 0.0;
-
-        ilaydaData.rec.x = ilaydaData.frame * ilaydaData.rec.width;
-        ilaydaData.frame++;
-        if (ilaydaData.frame > 5)
-        {
-          ilaydaData.frame = 0;
-        }
-      }
+      ilaydaData = updateAnimData(ilaydaData, dT, 5);
     }
 
     for (int i = 0; i < sizeOfNebula; i++)
     {
-      nebulas[i].runningTime += dT;
-      if (nebulas[i].runningTime >= nebulas[i].updateTime)
-      {
-        nebulas[i].runningTime = 0.0;
-        nebulas[i].rec.x = nebulas[i].frame * nebulas[i].rec.width;
-        nebulas[i].frame++;
-        if (nebulas[i].frame > 7)
-        {
-          nebulas[i].frame = 0;
-        }
-      }
+      nebulas[i] = updateAnimData(nebulas[i], dT, 7);
     }
 
     DrawTextureRec(ilayda, ilaydaData.rec, ilaydaData.pos, WHITE);
