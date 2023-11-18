@@ -170,11 +170,39 @@ int main()
       nebulas[i] = updateAnimData(nebulas[i], dT, 7);
     }
 
-    DrawTextureRec(ilayda, ilaydaData.rec, ilaydaData.pos, WHITE);
-
-    for (int i = 0; i < sizeOfNebula; i++)
+    bool collision;
+    // Range based for loop
+    for (AnimData neb : nebulas)
     {
-      DrawTextureRec(nebula, nebulas[i].rec, nebulas[i].pos, WHITE);
+      float padding = 50;
+      Rectangle nebRec{
+          neb.pos.x + padding,
+          neb.pos.y + padding,
+          neb.rec.width - 2 * padding,
+          neb.rec.height - 2 * padding};
+      Rectangle ilaydaRec{
+          ilaydaData.pos.x,
+          ilaydaData.pos.y,
+          ilaydaData.rec.width,
+          ilaydaData.rec.height};
+      if (CheckCollisionRecs(nebRec, ilaydaRec))
+      {
+        collision = true;
+      }
+    }
+
+    if (collision)
+    {
+      // GAME OVER
+    }
+    else
+    {
+      DrawTextureRec(ilayda, ilaydaData.rec, ilaydaData.pos, WHITE);
+
+      for (int i = 0; i < sizeOfNebula; i++)
+      {
+        DrawTextureRec(nebula, nebulas[i].rec, nebulas[i].pos, WHITE);
+      }
     }
 
     EndDrawing();
