@@ -64,9 +64,8 @@ int main()
     {
       // set mapPos = mapPos - direction
 
-      Vector2 scaledVector = Vector2Scale(Vector2Normalize(direction), speed);
-      mapPos = Vector2Subtract(mapPos, scaledVector);
-      direction.x < 0.f ? rightLeft = -1.0f : rightLeft = 1.0f;
+      mapPos = Vector2Subtract(mapPos, Vector2Scale(Vector2Normalize(direction), speed));
+      direction.x < 0.f ? rightLeft = -1.f : rightLeft = 1.f;
       knight = knightRun;
     }
     else
@@ -88,12 +87,11 @@ int main()
     }
 
     // draw the character
-    Rectangle source{knight.width / 6.f * frame, 0.f, rightLeft * knight.width / 6.f, (float)knight.height};
-    Rectangle dest{knightPos.x, knightPos.y, 4.0f * knight.width / 6.0f, 4.0f * knight.height};
+    Rectangle source{frame * (float)knight.width / 6.f, 0.f, rightLeft * (float)knight.width / 6.f, (float)knight.height};
+    Rectangle dest{knightPos.x, knightPos.y, 4.0f * (float)knight.width / 6.0f, 4.0f * (float)knight.height};
     DrawTexturePro(knight, source, dest, Vector2{}, 0.f, WHITE);
 
     EndDrawing();
   }
-  UnloadTexture(map);
   CloseWindow();
 }
