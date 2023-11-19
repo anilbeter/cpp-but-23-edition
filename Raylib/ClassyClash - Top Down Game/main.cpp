@@ -1,6 +1,12 @@
 #include "raylib.h"
 #include "raymath.h"
 
+class Character
+{
+public:
+private:
+};
+
 int main()
 {
   int windowDimensions[2]{384, 384};
